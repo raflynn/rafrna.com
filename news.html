@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Media — Flynn Lab</title>
+<meta name="description" content="News articles, podcasts, interviews, and media coverage of the Flynn Lab at Boston Children's Hospital and Harvard University.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink:        #1a1a1a;
+    --ink-soft:   #3a3a3a;
+    --ink-muted:  #6e6e6e;
+    --paper:      #fbfaf7;
+    --paper-warm: #f4f1ea;
+    --rule:       #dad6cc;
+    --accent:     #8b1538;   /* deep crimson — Harvard-adjacent */
+    --accent-soft:#c89b6d;   /* warm ochre */
+    --tag-news:   #2c5f5d;
+    --tag-podcast:#7a4ba0;
+    --tag-video:  #b85c38;
+    --tag-award:  #8b1538;
+    --tag-interview:#3a6ea5;
+    --tag-talk:   #5a6b3b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(0,0,0,0.025) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Site nav (matches Flynn Lab existing site) ---------- */
+  .site-nav {
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+    padding: 1.25rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(251, 250, 247, 0.92);
+  }
+  .site-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .site-brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  .site-brand span { color: var(--ink-muted); font-weight: 400; }
+  .site-links {
+    display: flex;
+    gap: 1.75rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .site-links a {
+    color: var(--ink-soft);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .site-links a:hover { color: var(--accent); }
+  .site-links a.active {
+    color: var(--accent);
+  }
+  .site-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: end;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-kicker::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  .hero-sub {
+    max-width: 540px;
+    color: var(--ink-soft);
+    font-size: 1.075rem;
+    line-height: 1.55;
+  }
+  .hero-stats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-align: right;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .hero-stats strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 3rem;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  /* ---------- Filter bar ---------- */
+  .filters {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    top: 70px;
+    background: rgba(251, 250, 247, 0.92);
+    backdrop-filter: blur(8px);
+    z-index: 50;
+  }
+  .filters-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    margin-right: 0.5rem;
+  }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    letter-spacing: 0.01em;
+  }
+  .filter-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .filter-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .filter-btn .count {
+    opacity: 0.55;
+    margin-left: 0.35rem;
+    font-size: 0.72rem;
+  }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem 6rem;
+  }
+
+  .year-block {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .year-block:first-of-type { border-top: none; padding-top: 1rem; }
+
+  .year-label {
+    font-family: 'Fraunces', serif;
+    font-size: 4.5rem;
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    position: sticky;
+    top: 150px;
+    align-self: start;
+  }
+  .year-label .year-count {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 0.75rem;
+    font-weight: 400;
+  }
+
+  .items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 2rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+    transition: padding-left 0.25s ease, background 0.25s ease;
+    position: relative;
+  }
+  .item:last-child { border-bottom: none; }
+  .item:hover {
+    padding-left: 0.75rem;
+    background: linear-gradient(to right, var(--paper-warm), transparent 80%);
+  }
+  .item::before {
+    content: '';
+    position: absolute;
+    left: -2px; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.25s ease;
+  }
+  .item:hover::before { transform: scaleY(1); }
+
+  .item-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-top: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .item-body { min-width: 0; }
+
+  .item-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  .item:hover .item-title { color: var(--accent); }
+
+  .item-outlet {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+  .item-outlet::before {
+    content: '↗';
+    display: inline-block;
+    margin-right: 0.4rem;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    color: var(--accent);
+    font-style: normal;
+    transform: translateX(-4px);
+  }
+  .item:hover .item-outlet::before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .item-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  /* ---------- Type tag ---------- */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.35rem 0.7rem;
+    border-radius: 3px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag-news     { color: var(--tag-news);     background: rgba(44, 95, 93, 0.08);  }
+  .tag-podcast  { color: var(--tag-podcast);  background: rgba(122, 75, 160, 0.08);}
+  .tag-video    { color: var(--tag-video);    background: rgba(184, 92, 56, 0.08); }
+  .tag-award    { color: var(--tag-award);    background: rgba(139, 21, 56, 0.08); }
+  .tag-interview{ color: var(--tag-interview);background: rgba(58, 110, 165, 0.08);}
+  .tag-talk     { color: var(--tag-talk);     background: rgba(90, 107, 59, 0.08); }
+  .tag-profile  { color: var(--ink-soft);     background: rgba(0,0,0,0.05); }
+
+  .tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* ---------- Footer ---------- */
+  .page-foot {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* ---------- Empty state ---------- */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-muted);
+    font-size: 1.1rem;
+    display: none;
+  }
+  .empty-state.visible { display: block; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.25rem 2rem; }
+    .hero-stats { text-align: left; }
+    .year-block { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
+    .year-label { position: static; font-size: 3rem; }
+    .item {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      padding: 1.5rem 0;
+    }
+    .item-meta {
+      flex-direction: row;
+      align-items: center;
+      order: -1;
+    }
+    .item:hover { padding-left: 0; }
+    .filters { padding: 1.25rem 1.25rem 0.75rem; top: 64px; }
+    .timeline { padding: 0.5rem 1.25rem 4rem; }
+    .item-title { font-size: 1.2rem; }
+  }
+  @media (max-width: 600px) {
+    .site-nav { padding: 1rem 1.25rem; }
+    .site-links { gap: 1rem; font-size: 0.82rem; }
+    .filters-label { display: none; }
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .item {
+    animation: fadeUp 0.6s ease backwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== NAV ============== -->
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="/" class="site-brand">Flynn Lab <span>· Harvard / Boston Children's</span></a>
+    <div class="site-links">
+      <a href="/#research">Research</a>
+      <a href="/#publications">Publications</a>
+      <a href="/#people">People</a>
+      <a href="/news.html" class="active">News & Media</a>
+      <a href="/#about">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div>
+    <div class="hero-kicker">In the press</div>
+    <h1>News &amp; <em>Media</em></h1>
+    <p class="hero-sub">
+      Coverage of the Flynn Lab's work on glycoRNAs, cell-surface RNA biology,
+      and the discovery of a new dimension to the glycocalyx — collected from
+      scientific press, podcasts, video lectures, and interviews.
+    </p>
+  </div>
+  <div class="hero-stats">
+    <strong id="totalCount">27</strong>
+    Items collected
+  </div>
+</header>
+
+<!-- ============== FILTERS ============== -->
+<div class="filters" role="toolbar" aria-label="Filter by media type">
+  <span class="filters-label">Filter</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="news">News</button>
+  <button class="filter-btn" data-filter="award">Awards</button>
+  <button class="filter-btn" data-filter="podcast">Podcasts</button>
+  <button class="filter-btn" data-filter="video">Videos</button>
+  <button class="filter-btn" data-filter="interview">Interviews</button>
+  <button class="filter-btn" data-filter="talk">Talks</button>
+  <button class="filter-btn" data-filter="profile">Profiles</button>
+</div>
+
+<!-- ============== TIMELINE ============== -->
+<main class="timeline" id="timeline">
+  <!-- year blocks injected by JS -->
+</main>
+
+<div class="empty-state" id="emptyState">No items in this category.</div>
+
+<!-- ============== FOOTER ============== -->
+<footer class="page-foot">
+  <span>© Flynn Lab · Boston Children's Hospital · Harvard University</span>
+  <span>Updated May 2026</span>
+</footer>
+
+<!-- ============== DATA + LOGIC ============== -->
+<script>
+  // Single source of truth — easy to add new items later.
+  // Just push another object to this array and the page rebuilds.
+  const ITEMS = [
+    // 2026
+    { date: "2026-01-28", year: 2026, displayDate: "Jan 28, 2026", type: "news",
+      title: "Cell surface glycoRNA clusters found to fine-tune growth factor signaling",
+      outlet: "Phys.org",
+      url: "https://phys.org/news/2026-01-cell-surface-glycorna-clusters-fine.html" },
+    { date: "2026-01-28", year: 2026, displayDate: "Jan 28, 2026", type: "news",
+      title: "Function of Cell Surface glycoRNAs Identified",
+      outlet: "Genetic Engineering & Biotechnology News (GEN)",
+      url: "https://www.genengnews.com/topics/translational-medicine/function-of-cell-surface-glycornas-identified/" },
+
+    // 2025
+    { date: "2025-08-12", year: 2025, displayDate: "Aug 12, 2025", type: "award",
+      title: "5 Pew-Stewart Scholars Selected to Pursue Pioneering Cancer Research",
+      outlet: "The Pew Charitable Trusts",
+      url: "https://www.pew.org/en/about/news-room/press-releases-and-statements/2025/08/12/5-pew-stewart-scholars-selected-to-pursue-pioneering-cancer-research" },
+    { date: "2025-08-12", year: 2025, displayDate: "Aug 12, 2025", type: "award",
+      title: "Five Pew-Stewart Scholars chosen to advance groundbreaking cancer research",
+      outlet: "EurekAlert!",
+      url: "https://www.eurekalert.org/news-releases/1094254" },
+    { date: "2025-06-12", year: 2025, displayDate: "Jun 12, 2025", type: "profile",
+      title: "Ryan Flynn, MD, PhD — CRI-funded scientist profile",
+      outlet: "Cancer Research Institute",
+      url: "https://www.cancerresearch.org/cri-funded-scientists/ryan-flynn-md-phd" },
+    { date: "2025-04-24", year: 2025, displayDate: "Apr 24, 2025", type: "news",
+      title: "Novel Leukemia Target Found in RNA-Binding Cell Surface Protein",
+      outlet: "Genetic Engineering & Biotechnology News (GEN)",
+      url: "https://www.genengnews.com/topics/cancer/novel-leukemia-target-found-in-rna-binding-cell-surface-protein/" },
+    { date: "2025-04-23", year: 2025, displayDate: "Apr 23, 2025", type: "news",
+      title: "New approach targets cell surface protein to treat leukemia and solid tumors",
+      outlet: "News-Medical.net",
+      url: "https://www.news-medical.net/news/20250423/New-approach-targets-cell-surface-protein-to-treat-leukemia-and-solid-tumors.aspx" },
+    { date: "2025-04-23", year: 2025, displayDate: "Apr 23, 2025", type: "news",
+      title: "Discovering a Novel Therapeutic Target: RNA-Binding Proteins on Cancer Cell Surfaces",
+      outlet: "Bioengineer.org",
+      url: "https://bioengineer.org/discovering-a-novel-therapeutic-target-rna-binding-proteins-present-on-cancer-cell-surfaces/" },
+    { date: "2025-01-31", year: 2025, displayDate: "Jan 31, 2025", type: "award",
+      title: "Damon Runyon Stage 2 continuation support & Science Magazine recognition for AML cell-surface ligand research",
+      outlet: "Boston Children's Stem Cell Program",
+      url: "https://research.childrenshospital.org/research-units/stem-cell-program-research/news" },
+
+    // 2024
+    { date: "2024-10-15", year: 2024, displayDate: "Oct 2024", type: "award",
+      title: "HMS Researcher Wins NIH Director's Transformative Research Award",
+      outlet: "Harvard Medical School",
+      url: "https://hms.harvard.edu/news/hms-researcher-wins-nih-directors-transformative-research-award" },
+    { date: "2024-10-15", year: 2024, displayDate: "Oct 2024", type: "award",
+      title: "Flynn receives NIH Director's Transformative Research Award (with Eliezer Calo)",
+      outlet: "Harvard HSCRB",
+      url: "https://hscrb.harvard.edu/news/flynn-nih-directors-transformative-research-award" },
+    { date: "2024-08-21", year: 2024, displayDate: "Aug 21, 2024", type: "news",
+      title: "Unveiling glycoRNAs: New study proves they do exist",
+      outlet: "Phys.org",
+      url: "https://phys.org/news/2024-08-unveiling-glycornas.html" },
+    { date: "2024-08-21", year: 2024, displayDate: "Aug 21, 2024", type: "news",
+      title: "Unveiling GlycoRNA: New study proves they do exist",
+      outlet: "EurekAlert!",
+      url: "https://www.eurekalert.org/news-releases/1055312" },
+    { date: "2024-07-17", year: 2024, displayDate: "Jul 17, 2024", type: "interview",
+      title: "Five questions with Ryan Flynn",
+      outlet: "Nature Biotechnology",
+      url: "https://www.nature.com/articles/s41587-024-02311-2" },
+    { date: "2024-06-20", year: 2024, displayDate: "Jun 20, 2024", type: "interview",
+      title: "Meet the authors: Lauren Kageler, Jonathan Perr, and Ryan A. Flynn",
+      outlet: "Cell Chemical Biology",
+      url: "https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(24)00214-9" },
+    { date: "2024-04-16", year: 2024, displayDate: "Apr 16, 2024", type: "podcast",
+      title: "Ep. 265: \"RNA Glycosylation\" featuring Dr. Ryan Flynn",
+      outlet: "The Stem Cell Podcast",
+      url: "https://stemcellpodcast.com/ep-265-rna-glycosylation-featuring-dr-ryan-flynn" },
+
+    // 2023
+    { date: "2023-02-09", year: 2023, displayDate: "Feb 9, 2023", type: "interview",
+      title: "Meet the HSCRB Faculty: Ryan Flynn",
+      outlet: "Harvard HSCRB",
+      url: "https://hscrb.harvard.edu/news/meet-hscrb-faculty-ryan-flynn/" },
+    { date: "2023-01-19", year: 2023, displayDate: "Jan 19, 2023", type: "award",
+      title: "Ryan A. Flynn receives the 2023 Damon Runyon-Rachleff Innovation Award",
+      outlet: "Harvard Medical School",
+      url: "https://hms.harvard.edu/news/supporting-next-generation-cancer-researchers" },
+
+    // 2022
+    { date: "2022-11-16", year: 2022, displayDate: "Nov 16, 2022", type: "talk",
+      title: "BioE Seminar: \"GlycoRNAs — bridging the gap between glycobiology and RNA biology\"",
+      outlet: "Northeastern Bioengineering",
+      url: "https://bioe.northeastern.edu/?p=3089" },
+    { date: "2022-05-10", year: 2022, displayDate: "May 10, 2022", type: "video",
+      title: "ERCC Webinar: Small RNAs modified with N-glycans on the surface of living cells",
+      outlet: "YouTube",
+      url: "https://www.youtube.com/watch?v=V9iyVR1OKx0" },
+    { date: "2022-01-15", year: 2022, displayDate: "Jan 15, 2022", type: "video",
+      title: "Ryan Flynn — Discovery and Function of glycoRNA",
+      outlet: "YouTube",
+      url: "https://www.youtube.com/watch?v=k3mxC2-VR1k" },
+
+    // 2021
+    { date: "2021-09-14", year: 2021, displayDate: "Sep 14, 2021", type: "podcast",
+      title: "Building tools to elucidate life with Ryan Flynn (Harvard)",
+      outlet: "Random Walks Podcast",
+      url: "https://podcasts.apple.com/us/podcast/building-tools-to-elucidate-life-with-ryan-flynn-harvard/id1541526934?i=1000535315971" },
+    { date: "2021-08-01", year: 2021, displayDate: "Aug 1, 2021", type: "news",
+      title: "Researchers find a cell surface decorated with sugar-coated RNAs",
+      outlet: "ASBMB Today",
+      url: "https://www.asbmb.org/asbmb-today/science/080121/researchers-find-a-cell-surface-decorated-with-sug" },
+    { date: "2021-05-17", year: 2021, displayDate: "May 17, 2021", type: "news",
+      title: "Some RNA Molecules Have Unexpected Sugar Coating",
+      outlet: "Howard Hughes Medical Institute (HHMI)",
+      url: "https://www.hhmi.org/news/some-rna-molecules-have-unexpected-sugar-coating" },
+    { date: "2021-05-17", year: 2021, displayDate: "May 17, 2021", type: "news",
+      title: "Discovery of sugar-coated RNA molecules opens up a new area of cell biology",
+      outlet: "Harvard Stem Cell Institute",
+      url: "https://www.hsci.harvard.edu/news/glycornas-sugar-coated-rna-molecules-discovery" },
+    { date: "2021-05-17", year: 2021, displayDate: "May 17, 2021", type: "news",
+      title: "Discovery of glycoRNAs upends cell biology",
+      outlet: "Boston Children's Answers",
+      url: "https://answers.childrenshospital.org/glycorna/" },
+    { date: "2021-05-17", year: 2021, displayDate: "May 17, 2021", type: "news",
+      title: "Discovery of sugar-coated RNA molecules (glycoRNAs)",
+      outlet: "Harvard HSCRB",
+      url: "https://hscrb.harvard.edu/news/discovery-of-sugar-coated-rna-molecules-glycornas" },
+  ];
+
+  // ---------- Render ----------
+  const TYPE_LABELS = {
+    news: "News",
+    podcast: "Podcast",
+    video: "Video",
+    award: "Award",
+    interview: "Interview",
+    talk: "Talk",
+    profile: "Profile"
+  };
+
+  function render(items) {
+    const tl = document.getElementById("timeline");
+    tl.innerHTML = "";
+    if (!items.length) {
+      document.getElementById("emptyState").classList.add("visible");
+      return;
+    }
+    document.getElementById("emptyState").classList.remove("visible");
+
+    // Group by year (already sorted newest first by data order)
+    const byYear = {};
+    items.forEach(item => {
+      if (!byYear[item.year]) byYear[item.year] = [];
+      byYear[item.year].push(item);
+    });
+    const years = Object.keys(byYear).sort((a, b) => b - a);
+
+    let globalIndex = 0;
+    years.forEach(year => {
+      const block = document.createElement("section");
+      block.className = "year-block";
+
+      const label = document.createElement("div");
+      label.className = "year-label";
+      label.innerHTML = `${year}<span class="year-count">${byYear[year].length} item${byYear[year].length===1?'':'s'}</span>`;
+
+      const list = document.createElement("div");
+      list.className = "items-list";
+
+      byYear[year].forEach((item) => {
+        const a = document.createElement("a");
+        a.href = item.url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.className = "item";
+        a.style.animationDelay = `${Math.min(globalIndex * 0.04, 0.6)}s`;
+        a.innerHTML = `
+          <div class="item-date">${item.displayDate}</div>
+          <div class="item-body">
+            <h3 class="item-title">${item.title}</h3>
+            <div class="item-outlet">${item.outlet}</div>
+          </div>
+          <div class="item-meta">
+            <span class="tag tag-${item.type}">${TYPE_LABELS[item.type]}</span>
+          </div>
+        `;
+        list.appendChild(a);
+        globalIndex++;
+      });
+
+      block.appendChild(label);
+      block.appendChild(list);
+      tl.appendChild(block);
+    });
+  }
+
+  // ---------- Filters ----------
+  let activeFilter = "all";
+  function applyFilter() {
+    const filtered = activeFilter === "all"
+      ? ITEMS
+      : ITEMS.filter(i => i.type === activeFilter);
+    render(filtered);
+  }
+
+  // Wire up filter buttons
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    // Add counts to each filter
+    const f = btn.dataset.filter;
+    if (f !== "all") {
+      const count = ITEMS.filter(i => i.type === f).length;
+      btn.innerHTML += ` <span class="count">${count}</span>`;
+    } else {
+      btn.innerHTML += ` <span class="count">${ITEMS.length}</span>`;
+    }
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeFilter = f;
+      applyFilter();
+    });
+  });
+
+  // Header count
+  document.getElementById("totalCount").textContent = ITEMS.length;
+
+  // Initial render
+  applyFilter();
+</script>
+
+</body>
+</html>
