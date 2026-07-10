@@ -47,8 +47,7 @@
     .hero { background: var(--ink); color: #fff; position: relative; overflow: hidden; padding: clamp(2rem, 5vw, 3.5rem) var(--g); }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 75% 40%, rgba(165,28,48,0.22) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 15% 85%, rgba(165,28,48,0.12) 0%, transparent 60%); pointer-events: none; z-index: 1; }
     .hero-bg-img { position: absolute; right: 0; top: 0; width: 55%; height: 100%; object-fit: contain; object-position: right center; opacity: 0.7; z-index: 0; background: transparent; }
-    .hero-inner { position: relative; z-index: 2; }
-    .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
+    .hero-inner { max-width: 46%; position: relative; z-index: 2; }
     .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 1.25rem; }
     .hero-eyebrow span { color: rgba(255,255,255,0.25); margin: 0 0.5rem; }
     .hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.75rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.25rem; max-width: 680px; }
@@ -179,6 +178,8 @@
       .people-grid { grid-template-columns: repeat(2, 1fr); }
       .alumni-list { grid-template-columns: 1fr; }
       .hero-cta { flex-direction: column; }
+      .hero-inner { max-width: 100%; }
+      .hero-bg-img { opacity: 0.2; }
     }
 
     /* ANIMATIONS */
@@ -281,9 +282,8 @@
     <h2 class="section-title">Publications</h2>
     <p class="section-intro"><strong>Flynn RA</strong> denoted in bold; * co-first author; # co-corresponding.</p>
     <div class="pub-filter">
-      <button class="pub-filter-btn active" onclick="filterPubs('all',this)">All (76)</button>
-      <button class="pub-filter-btn" onclick="filterPubs('recent',this)">2024–2026</button>
-      <button class="pub-filter-btn" onclick="filterPubs('mid',this)">2021–2023</button>
+      <button class="pub-filter-btn active" onclick="filterPubs('all',this)">All</button>
+      <button class="pub-filter-btn" onclick="filterPubs('recent-mid',this)">2021–2026</button>
       <button class="pub-filter-btn" onclick="filterPubs('early',this)">Before 2021</button>
     </div>
     <div class="pub-list" id="pubList">
@@ -766,7 +766,7 @@
 
     </div><!-- end pub-list -->
 
-    <div class="pub-show-more" id="showMoreBtn">
+    <div class="pub-show-more" id="showMoreBtn" style="display:none">
       <button class="btn-outline-dark" onclick="showEarly()">Show publications before 2021</button>
     </div>
 
@@ -927,6 +927,15 @@
         <div class="person-detail">Chemical Biology Program</div>
       </div>
 
+      <div class="person-card">
+        <div class="person-avatar">
+          <img src="260622_peev-elsa-headshot.jpg" alt="Elsa Peev" />
+        </div>
+        <div class="person-name">Elsa Peev, Ph.D.</div>
+        <div class="person-role">Postdoctoral Fellow</div>
+        <div class="person-detail"></div>
+      </div>
+
     </div>
 
     <div class="alumni-section">
@@ -940,7 +949,7 @@
           </tr>
         </thead>
                 <tbody>
-          <tr><td>Leon Zheng, M.D., Ph.D.</td><td><span class="alumni-type-cell">Postdoc</span></td><td>Assistant Professor, UMass Chan Medical School</td></tr>
+          <tr><td>Leon Zheng, M.D., Ph.D.</td><td><span class="alumni-type-cell">Postdoc</span></td><td>Physician in Pathology, UMass Chan Medical School</td></tr>
           <tr><td>Namita Bisara, Ph.D.</td><td><span class="alumni-type-cell">Postdoc</span></td><td>COO &amp; Co-founder, GanNA Bio</td></tr>
           <tr><td>Fang Zhou, Ph.D.</td><td><span class="alumni-type-cell">Postdoc</span></td><td>Research Fellow, MGH</td></tr>
           <tr><td>Christopher Watkins</td><td><span class="alumni-type-cell">Postdoc</span></td><td>Stealth Co.</td></tr>
@@ -955,6 +964,25 @@
       </table>
     </div>
 
+  </div>
+</section>
+
+
+<!-- LAB NEWS -->
+<section class="section" id="news" style="background: var(--bg);">
+  <div class="container">
+    <p class="section-label">Lab News</p>
+    <h2 class="section-title">Recent Highlights</h2>
+    <div style="margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem;">
+      <div style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--white);">
+        <img src="260117_lab-5th-birthday.jpg" alt="Flynn Lab 5th Birthday" style="width: 100%; height: 220px; object-fit: cover; display: block;" />
+        <div style="padding: 1.25rem 1.5rem 1.5rem;">
+          <div style="font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.5rem;">January 2026</div>
+          <h3 style="font-family: var(--serif); font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--ink);">The Flynn Lab Turns 5!</h3>
+          <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.7;">We celebrated the lab&rsquo;s 5th anniversary in January 2026 &mdash; five years of discovery, collaboration, and pushing the boundaries of RNA and glycobiology. Thank you to every member, past and present, who made this possible.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -976,21 +1004,20 @@
       <div class="about-content">
         <h3>Ryan A. Flynn</h3>
         <div class="pi-title">Associate Professor · Stem Cell Program · Boston Children's Hospital / Harvard University</div>
-        <a class="pi-email" href="/cdn-cgi/l/email-protection#1d6f647c73337b716473735d7e757471796f78736e33757c6f6b7c6f7933787968"><span class="__cf_email__" data-cfemail="f2808b939cdc949e8b9c9cb2919a9b9e9680979c81dc9a938084938096dc979687">[email&#160;protected]</span></a>
+        <a class="pi-email" href="mailto:ryan.flynn@childrens.harvard.edu">ryan.flynn@childrens.harvard.edu</a>
         <p class="pi-bio">I am an Associate Professor at Boston Children's Hospital in the Stem Cell Program and in the Stem Cell and Regenerative Biology Department at Harvard University. I completed my M.D. and Ph.D. in Cancer Biology in the MSTP at Stanford University, and received my B.S. in Biology from MIT. Outside the lab, I enjoy learning about and investing in new transformative technologies in the space, manufacturing, energy, and biotechnology sectors.</p>
         <div class="about-links">
-          <a href="https://scholar.google.com" class="about-link" target="_blank">Google Scholar</a>
+          <a href="https://scholar.google.com/citations?user=OatnXOYAAAAJ&amp;hl=en" class="about-link" target="_blank">Google Scholar</a>
           <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Flynn+RA%5BAuthor%5D&sort=date" class="about-link" target="_blank">PubMed</a>
-          <a href="https://angel.co/p/raflynn" class="about-link" target="_blank">AngelList</a>
           <a href="https://github.com/raflynn/disclosure" class="about-link" target="_blank">External Relationships</a>
-          <a href="https://www.childrenshospital.org/research/labs/stem-cell-program" class="about-link" target="_blank">BCH Stem Cell Program</a>
+          <a href="https://research.childrenshospital.org/research-units/stem-cell-program-research" class="about-link" target="_blank">BCH Stem Cell Program</a>
         </div>
         <div class="about-box">
           <h4>Lab Address</h4>
           <address>
             Flynn Lab · 1 Blackfan Circle, Karp 6th Floor<br>
             Boston, MA 02115<br>
-            Boston Children's Hospital · Harvard University
+            Boston Children's Hospital
           </address>
         </div>
         <div class="about-box">
@@ -1020,7 +1047,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
 
@@ -1047,4 +1074,20 @@
     const showMore = document.getElementById('showMoreBtn');
 
     if (era === 'all') {
-      items.forEach(el => e
+      items.forEach(el => { el.style.display = 'grid'; });
+      if (showMore) showMore.style.display = 'none';
+    } else if (era === 'recent-mid') {
+      items.forEach(el => {
+        el.style.display = (el.dataset.era === 'recent' || el.dataset.era === 'mid') ? 'grid' : 'none';
+      });
+      if (showMore) showMore.style.display = 'none';
+    } else {
+      items.forEach(el => {
+        el.style.display = el.dataset.era === era ? 'grid' : 'none';
+      });
+      if (showMore) showMore.style.display = 'none';
+    }
+  }
+</script>
+</body>
+</html>
