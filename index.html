@@ -282,11 +282,55 @@
     <h2 class="section-title">Publications</h2>
     <p class="section-intro"><strong>Flynn RA</strong> denoted in bold; * co-first author; # co-corresponding.</p>
     <div class="pub-filter">
-      <button class="pub-filter-btn active" onclick="filterPubs('all',this)">All</button>
-      <button class="pub-filter-btn" onclick="filterPubs('recent-mid',this)">2021–2026</button>
+      <button class="pub-filter-btn active" onclick="filterPubs('recent-mid',this)">2021–2026</button>
       <button class="pub-filter-btn" onclick="filterPubs('early',this)">Before 2021</button>
+      <button class="pub-filter-btn" onclick="filterPubs('all',this)">All</button>
     </div>
     <div class="pub-list" id="pubList">
+      <div class="pub-item" data-era="recent">
+        <div class="pub-num">81</div>
+        <div>
+          <div class="pub-title">4D force patterning enables spatial control of angiogenesis</div>
+          <div class="pub-authors">Kheiri S, Shah J, Chai P, Venkatesh SA, <strong>Flynn RA</strong>, Kamm RD, Raman R</div>
+          <div class="pub-meta"><span class="pub-journal">Proc Natl Acad Sci USA</span><span class="pub-year-badge">2026</span><a href="https://pubmed.ncbi.nlm.nih.gov/42406945/" class="pub-link" target="_blank">↗ PubMed</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-era="recent">
+        <div class="pub-num">80</div>
+        <div>
+          <div class="pub-title">Intact and single-molecule analysis of heparan sulfate</div>
+          <div class="pub-authors">Hristov P, Daneshvar Kakhaki P, Tzadikario T, Rai SK, Su G, Olivieri PH Jr, Esko JD, Liu J, Jain M, <strong>Flynn RA</strong></div>
+          <div class="pub-meta"><span class="pub-journal">bioRxiv</span><span class="pub-year-badge">2026</span><a href="https://www.biorxiv.org/content/10.64898/2026.06.26.734651v1" class="pub-link" target="_blank">↗ Link</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-era="recent">
+        <div class="pub-num">79</div>
+        <div>
+          <div class="pub-title">A&beta; Aggregates Bind the U1 Spliceosomal Ribonucleoprotein in Alzheimer Disease Brain</div>
+          <div class="pub-authors">Tao Y, Francis AE, Liu W, Watkins C, Bennett DA, Selkoe DJ, <strong>Flynn RA</strong>, Stern AM</div>
+          <div class="pub-meta"><span class="pub-journal">bioRxiv</span><span class="pub-year-badge">2026</span><a href="https://pubmed.ncbi.nlm.nih.gov/42282610/" class="pub-link" target="_blank">↗ PubMed</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-era="recent">
+        <div class="pub-num">78</div>
+        <div>
+          <div class="pub-title">Defining cell surface and glycosylated RNAs</div>
+          <div class="pub-authors">Tzintzun-Tapia E, Aryan F, <strong>Flynn RA</strong></div>
+          <div class="pub-meta"><span class="pub-journal">Trends in Genetics</span><span class="pub-year-badge">2026</span><span class="pub-tag">Review</span><a href="https://pubmed.ncbi.nlm.nih.gov/42225521/" class="pub-link" target="_blank">↗ PubMed</a></div>
+        </div>
+      </div>
+
+      <div class="pub-item" data-era="recent">
+        <div class="pub-num">77</div>
+        <div>
+          <div class="pub-title">Functional Inclusion of RNA Biology in the Tethered Extracellular Matrix</div>
+          <div class="pub-authors">Chai P, <strong>Flynn RA</strong></div>
+          <div class="pub-meta"><span class="pub-journal">Wiley Interdiscip Rev RNA</span><span class="pub-year-badge">2026</span><span class="pub-tag">Review</span><a href="https://pubmed.ncbi.nlm.nih.gov/42204973/" class="pub-link" target="_blank">↗ PubMed</a></div>
+        </div>
+      </div>
 
       <div class="pub-item" data-era="recent">
         <div class="pub-num">76</div>
@@ -1050,6 +1094,12 @@
 <script>
   function toggleMenu() { document.getElementById('mobileNav').classList.toggle('open'); }
   function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
+
+  // Default pub filter: 2021-2026
+  document.addEventListener('DOMContentLoaded', function() {
+    var defaultBtn = document.querySelector(".pub-filter-btn.active");
+    if (defaultBtn) filterPubs('recent-mid', defaultBtn);
+  });
 
   // Active nav highlight on scroll
   const secs = document.querySelectorAll('section[id]');
