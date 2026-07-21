@@ -189,6 +189,75 @@
     .hero h1 { animation-delay: 0.15s; }
     .hero-tagline { animation-delay: 0.24s; }
     .hero-cta { animation-delay: 0.32s; }
+
+    /* NEWS & MEDIA */
+    #news { background: var(--white); }
+    .news-scroll-track {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      padding-bottom: 1.25rem;
+      margin-top: 2rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .news-scroll-track::-webkit-scrollbar { height: 5px; }
+    .news-scroll-track::-webkit-scrollbar-track { background: var(--border); border-radius: 3px; }
+    .news-scroll-track::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 3px; }
+    .news-card {
+      flex: 0 0 272px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--white);
+      scroll-snap-align: start;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .news-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+    .news-card-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .news-card-graphic {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+    .news-card-graphic-label {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+    .news-card-graphic-outlet {
+      font-size: 0.78rem;
+      font-style: italic;
+      text-align: center;
+      opacity: 0.7;
+    }
+    .news-card-body { padding: 0.9rem 1.1rem 1.1rem; }
+    .news-card-date {
+      font-size: 0.67rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--crimson);
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+    .news-card-title {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 0.3rem;
+    }
+    .news-card-sub { font-size: 0.78rem; color: var(--light); font-style: italic; }
   </style>
 </head>
 <body>
@@ -204,8 +273,8 @@
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#people">People</a></li>
+      <li><a href="#news">News &amp; Media</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="news.html">News &amp; Media</a></li>
     </ul>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -215,8 +284,8 @@
     <a href="#research" onclick="closeMenu()">Research</a>
     <a href="#publications" onclick="closeMenu()">Publications</a>
     <a href="#people" onclick="closeMenu()">People</a>
+    <a href="#news" onclick="closeMenu()">News &amp; Media</a>
     <a href="#about" onclick="closeMenu()">About</a>
-    <a href="news.html" onclick="closeMenu()">News &amp; Media</a>
   </div>
 </header>
 
@@ -1012,30 +1081,12 @@
 </section>
 
 
-<!-- LAB NEWS -->
-<section class="section" id="news" style="background: var(--bg);">
+<!-- NEWS & MEDIA -->
+<section class="section" id="news">
   <div class="container">
-    <p class="section-label">Lab News</p>
-    <h2 class="section-title">Recent Highlights</h2>
-    <div style="margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem;">
-      <div style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--white);">
-      <div style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--white);">
-        <img src="260720_raman-flynn-bbq.jpeg" alt="2nd Annual Raman-Flynn BBQ" style="width: 100%; height: 220px; object-fit: cover; display: block;" />
-        <div style="padding: 1.25rem 1.5rem 1.5rem;">
-          <div style="font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.5rem;">July 2026</div>
-          <h3 style="font-family: var(--serif); font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--ink);">2nd Annual Raman&ndash;Flynn BBQ</h3>
-          <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.7;">Science is a team sport &mdash; and we have a winning team. The Flynn Lab joined forces with the <a href="https://ramanlab.mit.edu" target="_blank" style="color: var(--crimson);">Raman Lab at MIT</a> for our second annual summer BBQ.</p>
-        </div>
-      </div>
-
-      <img src="260117_lab-5th-birthday.jpg" alt="Flynn Lab 5th Birthday" style="width: 100%; height: 220px; object-fit: cover; display: block;" />
-        <div style="padding: 1.25rem 1.5rem 1.5rem;">
-          <div style="font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.5rem;">January 2026</div>
-          <h3 style="font-family: var(--serif); font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--ink);">The Flynn Lab Turns 5!</h3>
-          <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.7;">We celebrated the lab&rsquo;s 5th anniversary in January 2026 &mdash; five years of discovery, collaboration, and pushing the boundaries of RNA and glycobiology. Thank you to every member, past and present, who made this possible.</p>
-        </div>
-      </div>
-    </div>
+    <p class="section-label">News &amp; Media</p>
+    <h2 class="section-title">In the Press &amp; Lab Updates</h2>
+    <div class="news-scroll-track" id="newsTrack"></div>
   </div>
 </section>
 
@@ -1147,6 +1198,135 @@
       if (showMore) showMore.style.display = 'none';
     }
   }
+
+  // ── News & Media cards ─────────────────────────────────────────────────────
+  var NEWS_ITEMS = [
+    { date: "2026-07-20", displayDate: "Jul 2026", type: "event",
+      title: "2nd Annual Raman–Flynn BBQ",
+      img: "260720_raman-flynn-bbq.jpeg",
+      sub: "Science is a team sport — the Flynn Lab joined the Raman Lab at MIT for our second annual summer BBQ.", url: null },
+    { date: "2026-01-17", displayDate: "Jan 2026", type: "event",
+      title: "The Flynn Lab Turns 5!",
+      img: "260117_lab-5th-birthday.jpg",
+      sub: "Five years of discovery, collaboration, and pushing the boundaries of RNA and glycobiology.", url: null },
+    { date: "2026-01-28", displayDate: "Jan 28, 2026", type: "news",
+      title: "Cell surface glycoRNA clusters found to fine-tune growth factor signaling",
+      outlet: "Phys.org", url: "https://phys.org/news/2026-01-cell-surface-glycorna-clusters-fine.html" },
+    { date: "2026-01-28", displayDate: "Jan 28, 2026", type: "news",
+      title: "Function of Cell Surface glycoRNAs Identified",
+      outlet: "Genetic Engineering &amp; Biotechnology News", url: "https://www.genengnews.com/topics/translational-medicine/function-of-cell-surface-glycornas-identified/" },
+    { date: "2025-08-12", displayDate: "Aug 12, 2025", type: "award",
+      title: "5 Pew-Stewart Scholars Selected to Pursue Pioneering Cancer Research",
+      outlet: "The Pew Charitable Trusts", url: "https://www.pew.org/en/about/news-room/press-releases-and-statements/2025/08/12/5-pew-stewart-scholars-selected-to-pursue-pioneering-cancer-research" },
+    { date: "2025-08-12", displayDate: "Aug 12, 2025", type: "award",
+      title: "Five Pew-Stewart Scholars chosen to advance groundbreaking cancer research",
+      outlet: "EurekAlert!", url: "https://www.eurekalert.org/news-releases/1094254" },
+    { date: "2025-06-12", displayDate: "Jun 12, 2025", type: "profile",
+      title: "Ryan Flynn, MD, PhD — CRI-funded scientist profile",
+      outlet: "Cancer Research Institute", url: "https://www.cancerresearch.org/cri-funded-scientists/ryan-flynn-md-phd" },
+    { date: "2025-04-24", displayDate: "Apr 24, 2025", type: "news",
+      title: "Novel Leukemia Target Found in RNA-Binding Cell Surface Protein",
+      outlet: "Genetic Engineering &amp; Biotechnology News", url: "https://www.genengnews.com/topics/cancer/novel-leukemia-target-found-in-rna-binding-cell-surface-protein/" },
+    { date: "2025-04-23", displayDate: "Apr 23, 2025", type: "news",
+      title: "New approach targets cell surface protein to treat leukemia and solid tumors",
+      outlet: "News-Medical.net", url: "https://www.news-medical.net/news/20250423/New-approach-targets-cell-surface-protein-to-treat-leukemia-and-solid-tumors.aspx" },
+    { date: "2025-04-23", displayDate: "Apr 23, 2025", type: "news",
+      title: "Discovering a Novel Therapeutic Target: RNA-Binding Proteins on Cancer Cell Surfaces",
+      outlet: "Bioengineer.org", url: "https://bioengineer.org/discovering-a-novel-therapeutic-target-rna-binding-proteins-present-on-cancer-cell-surfaces/" },
+    { date: "2025-01-31", displayDate: "Jan 31, 2025", type: "award",
+      title: "Damon Runyon Stage 2 continuation support &amp; Science Magazine recognition",
+      outlet: "Boston Children’s Stem Cell Program", url: "https://research.childrenshospital.org/research-units/stem-cell-program-research/news" },
+    { date: "2024-10-15", displayDate: "Oct 2024", type: "award",
+      title: "HMS Researcher Wins NIH Director’s Transformative Research Award",
+      outlet: "Harvard Medical School", url: "https://hms.harvard.edu/news/hms-researcher-wins-nih-directors-transformative-research-award" },
+    { date: "2024-10-15", displayDate: "Oct 2024", type: "award",
+      title: "Flynn receives NIH Director’s Transformative Research Award",
+      outlet: "Harvard HSCRB", url: "https://hscrb.harvard.edu/news/flynn-nih-directors-transformative-research-award" },
+    { date: "2024-08-21", displayDate: "Aug 21, 2024", type: "news",
+      title: "Unveiling glycoRNAs: New study proves they do exist",
+      outlet: "Phys.org", url: "https://phys.org/news/2024-08-unveiling-glycornas.html" },
+    { date: "2024-08-21", displayDate: "Aug 21, 2024", type: "news",
+      title: "Unveiling GlycoRNA: New study proves they do exist",
+      outlet: "EurekAlert!", url: "https://www.eurekalert.org/news-releases/1055312" },
+    { date: "2024-07-17", displayDate: "Jul 17, 2024", type: "interview",
+      title: "Five questions with Ryan Flynn",
+      outlet: "Nature Biotechnology", url: "https://www.nature.com/articles/s41587-024-02311-2" },
+    { date: "2024-06-20", displayDate: "Jun 20, 2024", type: "interview",
+      title: "Meet the authors: Lauren Kageler, Jonathan Perr, and Ryan A. Flynn",
+      outlet: "Cell Chemical Biology", url: "https://www.cell.com/cell-chemical-biology/fulltext/S2451-9456(24)00214-9" },
+    { date: "2024-04-16", displayDate: "Apr 16, 2024", type: "podcast",
+      title: “Ep. 265: &ldquo;RNA Glycosylation&rdquo; featuring Dr. Ryan Flynn”,
+      outlet: "The Stem Cell Podcast", url: "https://stemcellpodcast.com/ep-265-rna-glycosylation-featuring-dr-ryan-flynn" },
+    { date: "2023-02-09", displayDate: "Feb 9, 2023", type: "interview",
+      title: "Meet the HSCRB Faculty: Ryan Flynn",
+      outlet: "Harvard HSCRB", url: "https://hscrb.harvard.edu/news/meet-hscrb-faculty-ryan-flynn/" },
+    { date: "2023-01-19", displayDate: "Jan 19, 2023", type: "award",
+      title: "Ryan A. Flynn receives the 2023 Damon Runyon-Rachleff Innovation Award",
+      outlet: "Harvard Medical School", url: "https://hms.harvard.edu/news/supporting-next-generation-cancer-researchers" },
+    { date: "2022-11-16", displayDate: "Nov 16, 2022", type: "talk",
+      title: "BioE Seminar: GlycoRNAs — bridging glycobiology and RNA biology",
+      outlet: "Northeastern Bioengineering", url: "https://bioe.northeastern.edu/?p=3089" },
+    { date: "2022-05-10", displayDate: "May 10, 2022", type: "video",
+      title: "ERCC Webinar: Small RNAs modified with N-glycans on the surface of living cells",
+      outlet: "YouTube", url: "https://www.youtube.com/watch?v=V9iyVR1OKx0" },
+    { date: "2022-01-15", displayDate: "Jan 15, 2022", type: "video",
+      title: "Ryan Flynn — Discovery and Function of glycoRNA",
+      outlet: "YouTube", url: "https://www.youtube.com/watch?v=k3mxC2-VR1k" },
+    { date: "2021-09-14", displayDate: "Sep 14, 2021", type: "podcast",
+      title: "Building tools to elucidate life with Ryan Flynn (Harvard)",
+      outlet: "Random Walks Podcast", url: "https://podcasts.apple.com/us/podcast/building-tools-to-elucidate-life-with-ryan-flynn-harvard/id1541526934?i=1000535315971" },
+    { date: "2021-08-01", displayDate: "Aug 1, 2021", type: "news",
+      title: "Researchers find a cell surface decorated with sugar-coated RNAs",
+      outlet: "ASBMB Today", url: "https://www.asbmb.org/asbmb-today/science/080121/researchers-find-a-cell-surface-decorated-with-sug" },
+    { date: "2021-05-17", displayDate: "May 17, 2021", type: "news",
+      title: "Some RNA Molecules Have Unexpected Sugar Coating",
+      outlet: "Howard Hughes Medical Institute (HHMI)", url: "https://www.hhmi.org/news/some-rna-molecules-have-unexpected-sugar-coating" },
+    { date: "2021-05-17", displayDate: "May 17, 2021", type: "news",
+      title: "Discovery of sugar-coated RNA molecules opens up a new area of cell biology",
+      outlet: "Harvard Stem Cell Institute", url: "https://www.hsci.harvard.edu/news/glycornas-sugar-coated-rna-molecules-discovery" },
+    { date: "2021-05-17", displayDate: "May 17, 2021", type: "news",
+      title: "Discovery of glycoRNAs upends cell biology",
+      outlet: "Boston Children’s Answers", url: "https://answers.childrenshospital.org/glycorna/" },
+    { date: "2021-05-17", displayDate: "May 17, 2021", type: "news",
+      title: "Discovery of sugar-coated RNA molecules (glycoRNAs)",
+      outlet: "Harvard HSCRB", url: "https://hscrb.harvard.edu/news/discovery-of-sugar-coated-rna-molecules-glycornas" }
+  ];
+
+  var NEWS_TYPE_STYLES = {
+    news:      { bg: 'rgba(44,95,93,0.1)',   color: '#2c5f5d', label: 'News'      },
+    podcast:   { bg: 'rgba(122,75,160,0.1)', color: '#7a4ba0', label: 'Podcast'   },
+    video:     { bg: 'rgba(184,92,56,0.1)',  color: '#b85c38', label: 'Video'     },
+    award:     { bg: 'rgba(139,21,56,0.1)',  color: '#8b1538', label: 'Award'     },
+    interview: { bg: 'rgba(58,110,165,0.1)', color: '#3a6ea5', label: 'Interview' },
+    talk:      { bg: 'rgba(90,107,59,0.1)',  color: '#5a6b3b', label: 'Talk'      },
+    profile:   { bg: 'rgba(0,0,0,0.05)',     color: '#4f4f4f', label: 'Profile'   },
+    event:     { bg: 'rgba(165,28,48,0.06)', color: '#A51C30', label: 'Event'     }
+  };
+
+  (function buildNewsCards() {
+    var track = document.getElementById('newsTrack');
+    if (!track) return;
+    NEWS_ITEMS.forEach(function(item) {
+      var s = NEWS_TYPE_STYLES[item.type] || NEWS_TYPE_STYLES.news;
+      var el = document.createElement(item.url ? 'a' : 'div');
+      if (item.url) { el.href = item.url; el.target = '_blank'; el.rel = 'noopener noreferrer'; }
+      el.className = 'news-card';
+      var topHtml = item.img
+        ? '<img class="news-card-img" src="' + item.img + '" alt="' + item.title + '" loading="lazy" />'
+        : '<div class="news-card-graphic" style="background:' + s.bg + ';border-bottom:3px solid ' + s.color + ';">'
+          + '<span class="news-card-graphic-label" style="color:' + s.color + ';">' + s.label + '</span>'
+          + (item.outlet ? '<span class="news-card-graphic-outlet" style="color:' + s.color + ';">' + item.outlet + '</span>' : '')
+          + '</div>';
+      el.innerHTML = topHtml
+        + '<div class="news-card-body">'
+        + '<div class="news-card-date">' + item.displayDate + '</div>'
+        + '<div class="news-card-title">' + item.title + '</div>'
+        + '<div class="news-card-sub">' + (item.sub || item.outlet || '') + '</div>'
+        + '</div>';
+      track.appendChild(el);
+    });
+  })();
+
 </script>
 </body>
 </html>
